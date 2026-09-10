@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +28,8 @@ public class User implements Serializable{//serve para que o obj trafegue na red
 	private String phone;
 	private String password;
 	
+	
+	@JsonIgnore  // como é uma "fila de linha dupla" em que os dois se chama, gera um loop onde eles se chamam toda hora,é necessario dele para que isso nao ocorra
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>();
 	

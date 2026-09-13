@@ -91,14 +91,14 @@ public class Product implements Serializable{
 		return categories;
 	}
 	
-	@JsonIgnore
-	public Set<Order> getOrders(){
-		Set<Order> set = new HashSet<>();
-		for(OrderItem x : items) {
-			set.add(x.getOrder());
+		@JsonIgnore
+		public Set<Order> getOrders(){
+			Set<Order> set = new HashSet<>();
+			for(OrderItem x : items) {
+				set.add(x.getOrder());
+			}
+			return set;
 		}
-		return set;
-	}
 	
 	@Override
 	public int hashCode() {

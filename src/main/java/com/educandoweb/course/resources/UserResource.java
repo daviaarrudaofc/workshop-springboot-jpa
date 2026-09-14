@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,8 +47,12 @@ public class UserResource {
 		            .toUri();											// transforma essa URL em um objeto URI
 
 		    return ResponseEntity.created(uri).body(obj);
-			
-			
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Long id){
+		service.delete(id);
+		return ResponseEntity.noContent().build();  //o .noConten() vai retornar uma resposta vazia e o codigo HTTP que n tem conteudo é o 204
 	}
 	
 }
